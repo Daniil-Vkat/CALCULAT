@@ -1,4 +1,7 @@
 #pragma once
+#include <iostream>
+#include <string>
+#include <limits>
 // Статус вместо магических чисел
 enum class Status {
     Ok,
