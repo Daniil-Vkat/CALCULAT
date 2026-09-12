@@ -1,7 +1,4 @@
-#include <iostream>
-#include <string>
-#include <limits>
- 
+#pragma once
 // Статус вместо магических чисел
 enum class Status {
     Ok,
@@ -158,9 +155,4 @@ void run(int argc, char** argv) {
         calculate(task);
     }
     output(task);
-}
- 
-int main(int argc, char** argv) {
-    run(argc, argv);
-    return 0;
 }
