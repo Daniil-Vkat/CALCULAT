@@ -1,7 +1,5 @@
 #pragma once
-#include <iostream>
-#include <string>
-#include <limits>
+#include <climits>
 // Статус вместо магических чисел
 enum class Status {
     Ok,
@@ -48,7 +46,7 @@ Status multiplication(long long a, long long b, long long& out) {
  
 Status division(long long a, long long b, long long& out) {
     if (b == 0) return Status::DivisionByZero;
-    if (a == std::numeric_limits<long long>::min() && b == -1) return Status::Overflow;
+    if (a == LLONG_MIN && b == -1) return Status::Overflow;
     out = a / b;
     return Status::Ok;
 }
