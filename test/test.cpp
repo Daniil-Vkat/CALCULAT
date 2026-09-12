@@ -1,6 +1,7 @@
 
 #include "libmath.h"
-int main(int argc, char** argv) {
-    run(argc, argv);
+int main() {
+    long long res;
+    Status status= addition(5, 4, res);
     return 0;
 }
