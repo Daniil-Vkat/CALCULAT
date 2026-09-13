@@ -2,6 +2,7 @@
 #include <climits>
 namespace math 
 {
+// Статус вместо магических чисел
 enum class Status {
     Ok,
     DivisionByZero,
@@ -47,7 +48,7 @@ Status multiplication(long long a, long long b, long long& out) {
  
 Status division(long long a, long long b, long long& out) {
     if (b == 0) return Status::DivisionByZero;
-    if (a == LLONG_MIN && b == -1) return Status::Overflow;
+    if (a == LLONG_MIN && b == -1) return Status::Overflow;    
     out = a / b;
     return Status::Ok;
 }
@@ -64,11 +65,12 @@ Status power(long long a, long long b, long long& out) {
  
 Status factorial(long long n, long long& out) {
     if (n < 0) return Status::NegativeFactorial;
-    long long r = 1;
-    for (long long i = 2; i <= n; ++i) {
-        if (__builtin_mul_overflow(r, i, &r)) return Status::Overflow;
-    }
-    out = r;
+    if (n > 20) return Status::Overflow;          // 21! > LLONG_MAX
+    if (n <= 1) { out = 1; return Status::Ok; }
+
+    long long prev = 0;
+    if (Status s = factorial(n - 1, prev); s != Status::Ok) return s;
+    if (__builtin_mul_overflow(prev, n, &out)) return Status::Overflow;
     return Status::Ok;
 }
  
@@ -86,9 +88,5 @@ void calculate(Task& task) {
         default: task.status = Status::UnknownOperation;
     }
 }
- 
-// ---------- Вывод ----------
- 
 
 }
-// Статус вместо магических чисел
