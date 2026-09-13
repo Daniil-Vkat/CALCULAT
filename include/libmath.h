@@ -1,6 +1,7 @@
 #pragma once
 #include <climits>
-// Статус вместо магических чисел
+namespace math 
+{
 enum class Status {
     Ok,
     DivisionByZero,
@@ -88,3 +89,6 @@ void calculate(Task& task) {
  
 // ---------- Вывод ----------
  
+
+}
+// Статус вместо магических чисел
